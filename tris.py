@@ -2,8 +2,9 @@ import pygame
 import os
 
 pygame.init()
-
-win = pygame.display.set_mode((500, 500))
+screen_width = 500
+screen_height = 500
+win = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("Tris")
 
 font = pygame.font.SysFont("Times New Roman", 20)
@@ -350,20 +351,20 @@ while run:
     x_scoreboard = font.render("X: {}".format(x_score), 1, (255,255,255))
     o_scoreboard = font.render("O: {}".format(o_score), 1, (255,255,255))
     win.blit(x_scoreboard, (0,0))
-    win.blit(o_scoreboard, (465,0))
+    win.blit(o_scoreboard, (screen_width - o_scoreboard.get_rect().width,0))
     if start_menu:
         if not x_win and not o_win and not draw:
             title = font.render("Tris!", 1, (255,255,255))
-            win.blit(title, (235,20))
+            win.blit(title, (title.get_rect(center=(screen_width/2, 40))))
         if x_win:
             title = font.render("Player X Win!", 1, (255,255,255))
-            win.blit(title, (200,20))
+            win.blit(title, (title.get_rect(center=(screen_width/2, 40))))
         if o_win:
             title = font.render("Player O Win!", 1, (255,255,255))
-            win.blit(title, (200,20))
+            win.blit(title, (title.get_rect(center=(screen_width/2, 40))))
         if draw:
             title = font.render("Draw!", 1, (255,255,255))
-            win.blit(title, (230,20))
+            win.blit(title, (title.get_rect(center=(screen_width/2, 40))))
         start = font.render("Start", 1, (255,255,255))
         win.blit(start, (235,235))
         create_table()
@@ -371,10 +372,10 @@ while run:
         create_table()
         if turn == True:
             turn_screen = font.render("X Turn", 1, (255,255,255))
-            win.blit(turn_screen, (225, 0))
+            win.blit(turn_screen, (turn_screen.get_rect(center=(screen_width/2, 20))))
         if turn == False:
             turn_screen = font.render("O Turn", 1, (255,255,255))
-            win.blit(turn_screen, (225, 0))
+            win.blit(turn_screen, (turn_screen.get_rect(center=(screen_width/2, 20))))
         if central_button.player_x == True:
             win.blit(x, (220, 220))
         if central_button.player_o == True:
